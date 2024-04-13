@@ -1,15 +1,19 @@
 
+
 const App = () => {
   return <div>
+    <div style={{ padding: '16px', backgroundColor: 'fefefe', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div>Daniel Pena</div>
+      <div>Fecha</div>
+    </div>
     <div>
-      <div>
-        <h1>Titulo</h1>
-        <h2>Titulo 2</h2>
-        <h3>Titulo 3</h3>
-        <h4>Titulo 4</h4>
-        <h5>Titulo 5</h5>
-        <h6>Titulo 6</h6>
-      </div>
+      Titulo
+    </div>
+    <div>
+      Imagen
+    </div>
+    <div>
+      Descripcion
     </div>
   </div>
 }

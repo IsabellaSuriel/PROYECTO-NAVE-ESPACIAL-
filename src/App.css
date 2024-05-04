@@ -5,7 +5,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  background-color: #ffffff;
   overflow: hidden;
 }
 
@@ -18,11 +18,11 @@
 /* Bullets */
 .bullet {
   position: absolute;
-  width: 1px;
+  width: 10px;
   /* Adjust bullet width as needed */
-  height: 10px;
+  height: 15px;
   /* Adjust bullet height as needed */
-  background-color: #ffffff;
+  background-color: #a026f1;
   /* White color */
   animation: bulletAnimation 1s linear;
   /* Bullet animation */
@@ -35,9 +35,9 @@
   /* Adjust obstacle width as needed */
   height: 30px;
   /* Adjust obstacle height as needed */
-  background-color: red;
+  background-color: rgb(119, 212, 252);
   /* Red color */
-  color: #ffffff;
+  color: #9d19f5;
   /* White color */
   font-size: 20px;
   text-align: center;

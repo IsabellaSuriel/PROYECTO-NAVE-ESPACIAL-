@@ -15,8 +15,20 @@ import './App.css';
  * 10. Reto: Crees que puedas cambiar la apariencia de la nave spacial? Inténtalo. Hint: En internet puedes buscar SVGs gratis que puedes usar aquí.
  */
 
-const initObstacleStr = 'HELLOAPPWORK';
 
+const initObstacleStr = 'isabella'
+
+function obtenerColorBasadoEnLaPosicion(posicion)  {
+    if(posicion <= 0) {
+      return "#f0538deb"
+    }else if (posicion <= 200) {
+      return "#ff4bd5"
+    }else if (posicion <= 400) {
+      return "#30ebf9"
+    } else {
+      return "#9af803"
+    }
+}
 const getRandomNumber = () => {
   return parseInt(Math.random().toString().slice(2, Math.min(length + 2, 18)), 10);
 }
@@ -25,7 +37,7 @@ const Game = () => {
   const [shipPosition, setShipPosition] = useState(0);
   const [bullets, setBullets] = useState([]);
   const [obstacles, setObstacles] = useState([]);
-  const [shipColor, setShipColor] = useState('#ffffff');
+  const [shipColor, setShipColor] = useState('#ff6ca5');
 
   useEffect(() => {
     // initiaze obstacles
@@ -52,6 +64,8 @@ const Game = () => {
         const htmlBulletElement = document.getElementById(currBullet.id);
 
         const bulletCalcs = htmlBulletElement.getBoundingClientRect();
+        console.log('bullet', bulletCalcs)
+      
 
         if (bulletCalcs.top <= 10) {
           // is in collapsion region
@@ -60,9 +74,11 @@ const Game = () => {
             const htmlObstacleElement = document.getElementById(currObstacle.id);
             const obstacleCalcs = htmlObstacleElement.getBoundingClientRect();
 
+            console.log('obstaculo', obstacleCalcs)
+
             if (bulletCalcs.x >= obstacleCalcs.left && bulletCalcs.x <= (obstacleCalcs.left + obstacleCalcs.width)) {
               // collapse
-              currObstacle.count++;
+              currObstacle.count+= 5;
               currBullet.expTime = new Date().getTime() - 100
             }
           }
@@ -73,7 +89,10 @@ const Game = () => {
       // latests verifications
       currBullets = bullets.filter((bullet) => bullet.expTime >= new Date().getTime());
       const totalPoints = (obstacles || []).reduce((acc, curr) => acc + curr.count, 0)
-      console.log('total points', totalPoints)
+      
+      if(totalPoints >= 20){
+        imprimiMensaje("Has anotado 20 puntos!")
+      }
 
       // setters
       setBullets(currBullets);
@@ -101,6 +120,9 @@ const Game = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
+    const color = obtenerColorBasadoEnLaPosicion(shipPosition)
+    console.log(color)
+    setShipColor(color);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -116,7 +138,7 @@ const Game = () => {
         style={{ left: obstacle.left, top: obstacle.top }}
       >
         <div>{obstacle.char}  {
-          obstacle.count > 0 && <div className='hits'> Hits: {obstacle.count} </div>
+          obstacle.count > 0 && <div className='hits'> TOTAL: {obstacle.count} </div>
         }</div>
 
       </div>
